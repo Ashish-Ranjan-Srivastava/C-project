@@ -1,0 +1,281 @@
+#include<iostream>
+#include<fstream>
+#include<conio.h>
+#include<string.h>
+using namespace std;
+class book
+{
+	public:
+	int bno[10][10];
+	char bname[50][50];
+	char aname[20][50];
+	string b1;
+	float rate;
+	int i=0,z=1,n=1,m,p=1,j=0,g=0,q=0,h,r;
+	int bill[10];
+	int price[10];
+	int quantity[10];
+	int bid[10],u=1,y[10];
+
+  
+  
+	void create_book()
+	{
+		n=1;
+		while(n==1)
+  {
+		fstream fout;
+		fout.open("hello.dat",ios::app|ios::binary);
+		cout<<"\nNEW BOOK ENTRY...\n";
+		cout<<"\n\nEnter The Name of The Book ";
+		cin>>bname[i];
+		cout<<"\n\nEnter The Author's Name "<<endl;;
+		cin>>aname[i];
+			fout.open("hi",ios::ate);
+			cout<<"\n\nenter price"<<endl;
+			cin>>price[i];
+			cout<<"\n\nenter quantity"<<endl;
+			cin>>quantity[i];
+			bid[i]=u++;
+			fout<<bid[i]<<endl;
+				fout<<price[i]<<endl;
+		         fout<<quantity[i]<<endl;
+		         fout.close();
+		fout<<bno[i]<<endl;
+		fout<<bname[i]<<endl;
+		fout<<aname[i]<<endl;
+		cout<<"\n\n\nBook Created with book id no:-"<<bid[i]<<endl;
+			i++;
+		h=i;
+		fout.close();
+			cout<<"\n\nthank you"<<endl;
+		
+			cout<<"\n\npress 1 to add book or 0 for main menu"<<endl;
+			cin>>n;
+}
+	}
+
+	void show_book()
+	{
+		int j=0;
+		ifstream on;
+		on.open("hello.dat",ios::in|ios::binary);
+			ifstream re;
+			re.open("hi.dat",ios::app|ios::binary);
+		 while(j<h)
+		 {
+	 	on>>bid[j];
+	 	on>>bname[j];
+	 	on>>aname[j];
+			re>>price[j];
+			re>>quantity[j];
+	 	cout<<"\nbook no:"<<bid[j]<<endl;
+	 	cout<<"book name:"<<bname[j]<<endl;
+	 	cout<<"author name:"<<aname[j]<<endl;
+			cout<<"price"<<price[j]<<endl;
+			cout<<"quantity"<<quantity[j]<<endl;
+	 	j++;
+		
+	 	on.close();
+			re.close();
+				
+	
+	}
+}
+              void search()
+            { 
+		     char books[20]; 
+		  
+             cout<<"\nenter book name:";
+             cin>>books;
+          		ifstream fon;
+		     fon.open("hello.dat",ios::in|ios::binary);
+		       for(i=0;i<u-1;i++)
+	      	{
+	  	     	fon>>bname[i];
+			
+	     	}
+	   	for(i=0;i<u-1;i++)
+	   	{
+	   		q=0;
+	 	b1=bname[i];	
+	 	if(books==b1)
+	 	{
+			
+			cout<<"book found at book no_:"<<i+1;
+			break;
+	 	}
+	 	else
+	 	q=1;
+	 }
+	 if(q==1)
+	 {
+	 	cout<<"book not found."<<endl;
+	 }
+	 
+          	fon.close();
+          }
+               
+            void modify()
+           {
+    		ifstream on;
+	   	on.open("hello.dat",ios::in|ios::binary);
+			ifstream re;
+			re.open("hi.dat",ios::in|ios::binary);
+		 while(j<u-1)
+		 {
+		on>>bid[j];
+		on>>bname[j];
+		on>>aname[j];
+			re>>price[j];
+			re>>quantity[j];
+		}
+		on.close();
+		re.close();
+    	cout<<"enter bno which have to modify"<<endl;
+    	cin>>g;
+    	cout<<"\n\nEnter The Name of The Book ";
+		cin>>bname[g-1];
+		cout<<"\n\nEnter The Author's Name "<<endl;;
+		cin>>aname[g-1];
+		
+			cout<<"\n\nenter price"<<endl;
+			cin>>price[g-1];
+			cout<<"\n\nenter quantity"<<endl;
+			cin>>quantity[g-1];
+			bid[g-1]=g;
+		
+		
+		ofstream on1;
+		on1.open("hello.dat",ios::out|ios::binary);
+			ofstream re1;
+			re1.open("hi.dat",ios::out|ios::binary);
+		for(j=0;j<u-1;j++)
+		{
+			on1<<bid[j]<<endl;
+				re1<<price[j]<<endl;
+		         re1<<quantity[j]<<endl;
+		on1<<bname[j]<<endl;
+		on1<<aname[j]<<endl;
+}
+on1.close();
+		re1.close();
+				
+	}
+
+	void total()
+		{
+		    	int k,d,count=0,e,t=1,l=1,bill=0;
+			     ifstream we;
+		          we.open("hello.dat",ios::in|ios::binary);
+		       	ifstream re;
+		          re.open("hi.dat",ios::in|ios::binary);
+		        cout<<" \n\npress 1 if you want to buy a book else press 0 to go to main menu:"<<endl;
+		        cin>>t;
+		        while(l==1)
+		        {
+		      	cout<<"enter book number"<<endl;
+		      	cin>>k;
+		        we>>bid[k-1];
+		        we>>bname[k-1];
+		        re>>price[k-1];
+		     	cout<<"book number-:"<<bid[k-1]<<endl;
+		     	cout<<"bookname-:"<<bname[k-1]<<endl;
+		     	cout<<"price-:"<<price[k-1]<<endl;
+		     	cout<<"enter quantity-:"<<endl;
+		     	cin>>y[k-1];
+		     	bill+=y[k-1]*price[k-1];
+		     	cout<<"\n\npress 1 to buy another book else press any key to exit:"<<endl;
+		         cin>>l;
+		    	 re.close();
+		    	 we.close();	
+		     	}
+	              cout<<"\n\npress 1 to print the bill else press 0 to go to main menu:"<<endl;
+		         cin>>t;
+		         string s;
+			 	cout<<"\nenter customer name:-"<<endl;
+			 	cin.ignore();
+			 	getline(cin,s);
+		         if(t==1)
+		         {
+		     	cout<<"........................................................................................................"<<endl;
+		     	cout<<"\ndate__- 19.april.2017"<<endl;
+		     	cout<<"     customer name-:"<<s<<endl;
+		     	for(j=0;j<u-1;j++)
+		     	{
+		     	cout<<"\nbook name:"<<bname[j]<<endl;
+		     	cout<<"\tprice:"<<price[j]<<endl;
+		     	cout<<"\tquantity"<<y[j]<<endl;
+		     
+			     }
+			 	cout<<"\ngrand total-:"<<bill<<endl;
+	          	}
+		    	 else
+		     	 {
+			 	z=1;
+		    	 }
+			 	cout<<"............................................................................................................."<<endl;
+			 	ifstream oop;
+		    	 oop.open("hi.dat",ios::out|ios::binary);
+		    	 oop>>bill;
+		    	 oop.close();
+			     }
+			     
+			
+	
+};
+ 
+int main()
+{   int z=1,choice;
+		book b,v;
+ 	 cout<<"..............................................................................................................."<<endl;
+ 	 cout<<"                                      WELCOME TO BOOK SHOP"<<endl;
+     cout<<"___________________________________________________________________________________________________________________"<<endl;
+	
+	while(z==1)
+	{
+	cout<<"\n\n1.create book"<<endl<<"2.show book"<<endl<<"3.search book"<<endl<<"4.to generate bill"<<endl<<"5.modify book"<<endl;
+
+	cout<<"\nenter your choice"<<endl;
+	cin>>choice;
+	switch(choice)
+	{
+		case 1:	
+		
+			b.create_book();
+	   	break;
+	   	case 2:
+			
+	    	b.show_book();	
+	   	break;
+		
+		case 3:
+		
+		
+			b.search();
+			
+			break;
+		
+		
+		case 4:
+		  b.total();
+		
+			
+			break;
+		
+       	case 5:
+		
+			b.modify();
+			break;
+		
+		default:
+		
+			break;
+  		
+	}
+}
+}
+
+
+
+	
